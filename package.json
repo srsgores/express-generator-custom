@@ -1,0 +1,45 @@
+{
+	"name": "generator-express-custom",
+	"version": "0.2.1",
+	"description": "A customized Nodejs Express generator for Yeoman",
+	"keywords": [
+		"yeoman-generator",
+		"express",
+		"scaffold"
+	],
+	"homepage": "https://github.com/srsgores/generator-express-custom",
+	"bugs": "https://github.com/srsgores/generator-express-custom/issues",
+	"author": {
+		"name": "Sean Goresht",
+		"email": "seangores@gmail.com",
+		"url": "http://seangoresht.com"
+	},
+	"contributors": [
+		{
+			"name": "nategood",
+			"url": "http://nategood.com"
+		}
+	],
+	"main": "app/index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/srsgores/generator-express-custom.git"
+	},
+	"scripts": {
+		"test": "mocha"
+	},
+	"dependencies": {
+		"yeoman-generator": "~0.12.0"
+	},
+	"devDependencies": {
+		"mocha": "~1.9.0"
+	},
+	"engines": {
+		"node": ">=0.8.0"
+	},
+	"licenses": [
+		{
+			"type": "MIT"
+		}
+	]
+}
