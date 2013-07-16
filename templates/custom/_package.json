@@ -1,6 +1,7 @@
 {
-	"name": "<%= _.slugify(appname) %>",
+	"name": "<%= _.slugify(name) %>",
 	"version": "0.0.1",
+	"description": "<%= description %>",
 	"private": true,
 	"scripts": {
 		"start": "node app"
