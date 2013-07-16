@@ -11,20 +11,14 @@ function ExpressGenerator() {
 
 util.inherits(ExpressGenerator, yeoman.generators.Base);
 
-ExpressGenerator.prototype.setupEnv = function setupEnv() {
-	this.sourceRoot(path.join(__dirname, "../templates/custom"));
-	this.directory(".", ".", true);
-	this.mkdir("public/img");
-	this.mkdir("public/js/components");
-	this.mkdir("public/js");
-	this.template("_bower.json", "bower.json");
-	this.template("_package.json", "package.json");
-	this.template("_app.js", "app.js");
-};
-
-ExpressGenerator.prototype.packageJSON = function packageJSON() {
-	this.template("package.json", "package.json");
-};
+ExpressGenerator.prototype.welcome = function welcome() {
+	var logo = "        " +
+			"     EXPRESS" +
+			"THE CUSTOM" +
+			"               YEOMAN GENERATOR",
+		welcomeText = "Welcome to the Express custom generator";
+		this.log.writeln(logo + "\n" + welcomeText);
+}
 
 ExpressGenerator.prototype.promptUser = function promptUser() {
 
@@ -74,6 +68,7 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 		//js libraries to include
 		{
 			name: "modernizr",
+			type: "confirm",
 			message: "Would you like to use Modernizr?",
 			required: true,
 			advanced: false,
@@ -110,12 +105,14 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 		{
 			name: "authorURL",
 			message: "What is the site where the author can be reached?",
+			default: "http://seangoresht.com",
 			required: true,
 			advanced: true
 		},
 
 		{
 			name: "authorGitHub",
+			default: "srsgores",
 			message: "What is your gitHub account?",
 			required: true,
 			advanced: true
@@ -123,6 +120,7 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 
 		{
 			name: "authorTwitter",
+			default: "srsgores",
 			message: "What is your Twitter account?",
 			required: true,
 			advanced: true
@@ -138,8 +136,9 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 
 		{
 			name: "lessMiddleWare",
+			type: "confirm",
 			message: "(Optional) Enter the pages you wish to create for this site -- comma-separated",
-			default: "about, features, contact",
+			default: false,
 			required: false,
 			advanced: true
 		}
@@ -161,5 +160,22 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 
 		//once the prompts are finished, do the callback
 		cb();
-	});
+	}.bind(this));
+};
+
+ExpressGenerator.prototype.setupEnv = function setupEnv() {
+	this.sourceRoot(path.join(__dirname, "../templates/custom"));
+	this.directory(".", ".", true);
+	this.mkdir("public/img");
+	this.mkdir("public/js/components");
+	this.mkdir("public/js");
+};
+
+ExpressGenerator.prototype.packageJSON = function packageJSON() {
+	this.template("_package.json", "package.json");
+};
+
+ExpressGenerator.prototype.generateContent = function generateContent() {
+	this.template("_bower.json", "bower.json");
+	this.template("_app.js", "app.js");
 };
