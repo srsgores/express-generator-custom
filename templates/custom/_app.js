@@ -5,7 +5,13 @@
 var express = require("express")
 	, routes = require("./routes")
 	, http = require("http")
-	, path = require("path");
+	<% if (lessMiddleWare === true) { %>
+	, less = require("less-middleware")
+	<% } %>
+	, path = require("path")
+	<% if (sassMiddleWare === true) { %>
+	, sass = require("node-sass")
+	<% } %>;
 
 var app = express();
 
@@ -22,7 +28,7 @@ app.configure(function ()
 	app.use(express.session());
 	app.use(app.router);
 
-	<% if (lessMiddleWare === true && lessMiddleWare != "undefined") { %>
+	<% if (lessMiddleWare === true) { %>
 	app.use(require("less-middleware")(
 		{ src: __dirname + "/public/less",
 			compress: true,
@@ -31,6 +37,14 @@ app.configure(function ()
 			dest: __dirname + "/public/css"}));
 	<% } %>
 
+	<% if (sassMiddleWare === true) { %>
+		app.use(
+			sass.middleware({
+				src: __dirname + "/public/sass",
+				dest: __dirname + "/public",
+				debug: true
+			}));
+	<% } %>
 	app.use(express.static(path.join(__dirname, "public")));
 });
 

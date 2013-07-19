@@ -22,61 +22,48 @@ head
 			title #{title}
 			meta(name = "description", content = "#{description}")
 			meta(name = "viewport", content = "width=device-width")
-			meta(name = "keywords", content = "#{keywords}")
 		block header-scripts
-			<% if (modernizr === true) { %>
-			script(src = "js/components/modernizr.js")
-			<% } %>
-		<% if (requirejs === true) { %>
-			script(data-main = "scripts/main", src = "js/components/requirejs/require.js")
-		<% } %>
+			<% if (modernizr === true) { %>script(src = "js/components/modernizr.js")<% } %>
 		block header-styles
 			link(href = "http://fonts.googleapis.com/css?family=Open+Sans:400,300", rel = "stylesheet")
 			link(rel = "stylesheet", href = "/css/style.css")
 body
-	#ajaxloader1
-	header.row.centred
-		nav(role = "main")
-			ul.nav
-				li
-					a(href = "#")
-						| &nbsp;Home&nbsp;
-						i.icon-home
-				li
-					a(href = "#")
-						| &nbsp;About&nbsp;
-						i.icon-book-2
-				li
-					a(href = "#")
-						| &nbsp;Download&nbsp;
-						i.icon-download
-				li
-					a(href = "#")
-						| &nbsp;FAQ&nbsp;
-						i.icon-database
-				li
-					a(href = "#")
-						| &nbsp;Contact&nbsp;
-						i.icon-mail
-	#content.container.visuallyhidden.loading
-		block content
-	block footer
-		footer.row.centred
-			nav(role = "secondary")
-				ul
-					li
-						a(href = "#") Link 1
-					li
-						a(href = "#") Link 2
-					li
-						a(href = "#") Link 3
-					li
-						a(href = "#") Link 4
+	div.container
+		header
+			block header-nav
+				nav(role = "main")
+					ul.nav
+						li
+							a(href = "#")
+								| &nbsp;Home&nbsp;
+								i.icon-home
+						li
+							a(href = "#")
+								| &nbsp;About&nbsp;
+								i.icon-book-2
+						li
+							a(href = "#")
+								| &nbsp;Download&nbsp;
+								i.icon-download
+						li
+							a(href = "#")
+								| &nbsp;FAQ&nbsp;
+								i.icon-database
+						li
+							a(href = "#")
+								| &nbsp;Contact&nbsp;
+								i.icon-mail
+		article#content(role = "main")
+			block content
+		block footer
+			footer
+				block footer-nav
 	block scripts
-		<% if (jQuery === true) { %>
-			script(src = "//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js")
-		<% } %>
+		<% if (jQuery === true && requirejs === false) { %>script(src = "//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js")
 		script(src = "/js/main.js")
+		<% } %>
+		<% if (requirejs === true) { %>script(data-main = "/js/main", src = "js/components/requirejs/require.js")
+		<% } %>
 		//Google Analytics: change UA-XXXXX-X to be your site"s ID.
 		script
 			var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];

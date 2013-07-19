@@ -9,9 +9,8 @@
 	"dependencies": {
 		"express": "~3.0.0",
 		"jade": "*",
-		<% if (lessMiddleWare === true) { %>
-			"less-middleware": "*",
-		<% } %>
+		<% if (sassMiddleWare === true) { %>"node-sass": "*"<% } %>
+		<% else if (lessMiddleWare === true) { %>"less-middleware": "*"<% } %>
 	},
 	"devDependencies": {
 		"grunt": "~0.4.1",

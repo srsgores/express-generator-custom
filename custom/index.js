@@ -120,25 +120,41 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 
 		{
 			name: "authorTwitter",
-			default: "srsgores",
+			default: "SGoresht",
 			message: "What is your Twitter account?",
 			required: true,
 			advanced: true
 		},
 
-		{
+/*		{
 			name: "pages",
 			message: "(Optional) Enter the pages you wish to create for this site -- comma-separated",
 			default: "about, features, contact",
 			required: false,
 			advanced: true
+		},*/
+		{
+			name: "authorCompanyName",
+			default: "Company Name",
+			message: "(optional) What is your company name?",
+			required: false,
+			advanced: false
 		},
 
 		{
 			name: "lessMiddleWare",
 			type: "confirm",
-			message: "(Optional) Would you like to use LESS?",
+			message: "(Optional) Would you like to use LESS middleware to compile your styles server-side?",
 			default: false,
+			required: false,
+			advanced: true
+		},
+
+		{
+			name: "sassMiddleWare",
+			type: "confirm",
+			message: "(Optional) Would you like to use SASS middleware to compile your styles server-side?",
+			default: true,
 			required: false,
 			advanced: true
 		}
@@ -158,7 +174,9 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 		self.authorGitHub = props.authorGitHub;
 		self.authorTwitter = props.authorTwitter;
 		self.authorPages = props.authorPages;
+		self.authorCompanyName = props.authorCompanyName;
 		self.lessMiddleWare = props.lessMiddleWare;
+		self.sassMiddleWare = props.sassMiddleWare;
 
 		//once the prompts are finished, do the callback
 		cb();
@@ -185,6 +203,8 @@ ExpressGenerator.prototype.generateContent = function generateContent() {
 	this.template("views/_layout.jade", "views/layout.jade");
 	//scaffold main route file with user's info
 	this.template("routes/_index.js", "routes/index.js");
+	//scaffold main style file
+	this.template("public/sass/_style.scss", "public/sass/style.scss");
 };
 
 ExpressGenerator.prototype.includeIcomoon = function includeIcomoon() {
@@ -205,3 +225,23 @@ ExpressGenerator.prototype.generateRequire = function generateRequire() {
 	}
 	this.template("public/js/_main.js", "public/js/main.js");
 }
+
+/*
+TODO: Append author info to all files that support comments (NOT HTML)
+ExpressGenerator.prototype.writeAuthorInfo = function writeAuthorInfo() {
+	var authorInfo =
+		"*/
+/*------------------------------------------------------------------------------------------------------------------------" +
+	"\n\tAuthor: " + this.authorName +
+	"\n\tgithub: " + this.authorGitHub +
+	"\n" +
+	"\n\ttwitter: " + this.authorTwitter +
+	"\n" +
+	"\n\t=============================================================================" +
+	"\n\tFilename: " +
+	"\n\t=============================================================================" +
+	"\n\tThis file is responsible for " +
+
+	"\n\t--------------------------------------------------------------------------------------------------------------------- *//*
+";
+};*/

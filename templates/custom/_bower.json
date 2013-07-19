@@ -3,15 +3,9 @@
 	"version": "0.0.0",
 	"main": "app.js",
 	"dependencies": {
-		<% if (jQuery === true) { %>
-		"jQuery": "~1.10.1",
-		<% } %>
-		<% if (modernizr === true) { %>
-		"modernizr": "~2.6.2",
-		<% } %>
-		<% if (requirejs === true) { %>
-		"requirejs": "*",
-		<% } %>
+		<% if (jQuery === true) { %>"jquery": "~1.10.1",<% } %>
+		<% if (modernizr === true) { %>"modernizr": "~2.6.2",<% } %>
+		<% if (requirejs === true) { %>"requirejs": "*",<% } %>
 	},
 	"ignore": [
 		"**/.*",

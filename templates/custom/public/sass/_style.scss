@@ -1,3 +1,20 @@
+/*------------------------------------------------------------------------------------------------------------------------
+ @author: <%= authorName %>
+ @www: <%= authorURL %>
+ @github: <%= authorGitHub %>
+
+ @twitter: <%= authorTwitter %>
+
+ @copyright: COPYRIGHT 2013 <%= authorCompanyName %>
+ =============================================================================
+ Filename: index.js
+ =============================================================================
+ This file is responsible for all styles on the <%= name %> application.  Styles should be compiled using compass and sass.
+ --------------------------------------------------------------------------------------------------------------------- */
+
+/* =============================================================================
+Imports
+========================================================================== */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 @import "partials/variables.scss";
 @import "partials/_helpers.scss";
