@@ -22,7 +22,7 @@ app.configure(function ()
 	app.use(express.session());
 	app.use(app.router);
 
-	<% if (lessMiddleWare === true) %>
+	<% if (lessMiddleWare === true && lessMiddleWare != "undefined") { %>
 	app.use(require("less-middleware")(
 		{ src: __dirname + "/public/less",
 			compress: true,

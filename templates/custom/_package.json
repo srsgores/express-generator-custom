@@ -8,7 +8,10 @@
 	},
 	"dependencies": {
 		"express": "~3.0.0",
-		"jade": "*"
+		"jade": "*",
+		<% if (lessMiddleWare === true) { %>
+			"less-middleware": "*",
+		<% } %>
 	},
 	"devDependencies": {
 		"grunt": "~0.4.1",

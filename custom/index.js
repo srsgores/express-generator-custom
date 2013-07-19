@@ -137,7 +137,7 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 		{
 			name: "lessMiddleWare",
 			type: "confirm",
-			message: "(Optional) Enter the pages you wish to create for this site -- comma-separated",
+			message: "(Optional) Would you like to use LESS?",
 			default: false,
 			required: false,
 			advanced: true
@@ -146,6 +146,7 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 
 	this.prompt(prompts, function (props) {
 		// set the property to parse the gruntfile
+		self.name = props.name;
 		self.description = props.description;
 		self.keywords = props.keywords;
 		self.icons = props.icons;
@@ -157,6 +158,7 @@ ExpressGenerator.prototype.promptUser = function promptUser() {
 		self.authorGitHub = props.authorGitHub;
 		self.authorTwitter = props.authorTwitter;
 		self.authorPages = props.authorPages;
+		self.lessMiddleWare = props.lessMiddleWare;
 
 		//once the prompts are finished, do the callback
 		cb();
@@ -173,9 +175,33 @@ ExpressGenerator.prototype.setupEnv = function setupEnv() {
 
 ExpressGenerator.prototype.packageJSON = function packageJSON() {
 	this.template("_package.json", "package.json");
+	this.template("_bower.json", "bower.json");
 };
 
 ExpressGenerator.prototype.generateContent = function generateContent() {
-	this.template("_bower.json", "bower.json");
+	//scaffold main application fild
 	this.template("_app.js", "app.js");
+	//scaffold main layout file
+	this.template("views/_layout.jade", "views/layout.jade");
+	//scaffold main route file with user's info
+	this.template("routes/_index.js", "routes/index.js");
 };
+
+ExpressGenerator.prototype.includeIcomoon = function includeIcomoon() {
+	if (this.icomoon === true) {
+		this.copy("public/sass/partials/icomoon/_icomoon.scss", "public/sass/partials/icomoon/_icomoon.scss");
+		this.copy("public/sass/partials/icomoon/_icomoon_session.json", "public/fonts/icomoon/session/icomoon_session.json");
+		this.copy("public/fonts/icomoon/icomoon.eot", "public/fonts/icomoon/icomoon.eot");
+		this.copy("public/fonts/icomoon/icomoon.svg", "public/fonts/icomoon/icomoon.svg");
+		this.copy("public/fonts/icomoon/icomoon.ttf", "public/fonts/icomoon/icomoon.woff");
+	}
+};
+
+ExpressGenerator.prototype.generateRequire = function generateRequire() {
+	if (this.requirejs === true) {
+		this.mkdir("public/js/app");
+		this.mkdir("public/js/lib");
+		this.template("public/js/_app.js", "public/js/app/app.js");
+	}
+	this.template("public/js/_main.js", "public/js/main.js");
+}

@@ -46,6 +46,12 @@ describe("express generator", function () {
 	});
 });
 
+/*describe("Custom Express generator", function() {
+	beforeEach(function(done) {
+
+	})
+})*/
+
 describe("express MVC generator", function () {
 	beforeEach(function (done) {
 		helpers.testDirectory(path.join(__dirname, "temp"), function (err) {
@@ -55,7 +61,8 @@ describe("express MVC generator", function () {
 
 			this.app = helpers.createGenerator("express:mvc", [
 				"../../mvc",
-				"../../common"
+				"../../common",
+				"../../custom"
 			]);
 			done();
 		}.bind(this));

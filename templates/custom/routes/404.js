@@ -1,1 +1,0 @@
-res.render('404', { title: 'File not Found', status: 404 });
